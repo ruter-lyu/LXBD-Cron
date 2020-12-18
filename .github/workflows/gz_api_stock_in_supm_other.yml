@@ -1,0 +1,25 @@
+name: GZ API Push Stock In Supm Other
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "20 20 * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup Python 2.7
+        uses: actions/setup-python@v2
+        with:
+          python-version: 2.7
+      - name: Run API Push Script
+        run: python kingdee_api_push.py
+        env:
+          DB_NAME: ${{ secrets.GZ_DB }}
+          ODOO_URL: ${{ secrets.GZ_URL }}
+          LOGIN: ${{ secrets.ODOO_LOGIN }}
+          PASSWORD: ${{ secrets.ODOO_PASSWORD }}
+          TEMP_CODE: lxbd.stock.in.supm.other

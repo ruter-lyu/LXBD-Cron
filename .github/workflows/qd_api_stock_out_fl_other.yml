@@ -1,0 +1,25 @@
+name: QD-API Push Stock Out FL Other
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "40 21 * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup Python 2.7
+        uses: actions/setup-python@v2
+        with:
+          python-version: 2.7
+      - name: Run API Push Material Script
+        run: python kingdee_api_push.py
+        env:
+          DB_NAME: ${{ secrets. QD_DB }}
+          ODOO_URL: ${{ secrets. QD_URL }}
+          LOGIN: ${{ secrets.ODOO_LOGIN }}
+          PASSWORD: ${{ secrets.ODOO_PASSWORD }}
+          TEMP_CODE: lxbd.stock.out.fl.other
