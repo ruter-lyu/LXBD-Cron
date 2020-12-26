@@ -18,8 +18,8 @@ jobs:
       - name: Run API Push Material Script
         run: python kingdee_api_push.py
         env:
-          DB_NAME: ${{ secrets. QD_DB }}
-          ODOO_URL: ${{ secrets. QD_URL }}
+          DB_NAME: ${{ secrets.QD_DB }}
+          ODOO_URL: ${{ secrets.QD_URL }}
           LOGIN: ${{ secrets.ODOO_LOGIN }}
           PASSWORD: ${{ secrets.ODOO_PASSWORD }}
           TEMP_CODE: lxbd.stock.out.wh3.other

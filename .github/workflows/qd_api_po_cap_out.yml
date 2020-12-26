@@ -1,9 +1,9 @@
-name: QD-API Push Stock In Curtain Other
+name: QD API Push Produce Order Cap Out
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: "10 18 * * *"
+    - cron: "55 21 * * *"
 
 jobs:
   build:
@@ -15,11 +15,11 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 2.7
-      - name: Run API Push Material Script
+      - name: Run API Push Script
         run: python kingdee_api_push.py
         env:
           DB_NAME: ${{ secrets.QD_DB }}
           ODOO_URL: ${{ secrets.QD_URL }}
           LOGIN: ${{ secrets.ODOO_LOGIN }}
           PASSWORD: ${{ secrets.ODOO_PASSWORD }}
-          TEMP_CODE: lxbd.stock.in.curtain.other
+          TEMP_CODE: lxbd.produce.order.cap.out
